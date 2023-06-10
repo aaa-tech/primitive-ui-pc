@@ -1,0 +1,59 @@
+{
+  "code": 200,
+  "msg": "",
+  "result": 
+  {
+    "total": 216,
+    "rows": [
+    {
+      "areaid": 12,
+      "areaname": "安徽省",
+      "val": 4
+    },
+    {
+      "areaid": 13,
+      "areaname": "福建省",
+      "val": 6
+    },
+    {
+      "areaid": 19,
+      "areaname": "广东省",
+      "val": 2
+    },
+    {
+      "areaid": 29,
+      "areaname": "贵州省",
+      "val": 2
+    },
+    {
+      "areaid": 3,
+      "areaname": "河北省",
+      "val": 51
+    },
+    {
+      "areaid": 16,
+      "areaname": "河南省",
+      "val": 1
+    },
+    {
+      "areaid": 17,
+      "areaname": "湖北省",
+      "val": 9
+    },
+    {
+      "areaid": 18,
+      "areaname": "湖南省",
+      "val": 5
+    },
+    {
+      "areaid": 6,
+      "areaname": "辽宁省",
+      "val": 129
+    },
+    {
+      "areaid": 23,
+      "areaname": "陕西省",
+      "val": 5
+    }]
+  }
+}

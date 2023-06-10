@@ -1,0 +1,57 @@
+{
+  "code": 200,
+  "msg": "",
+  "result":
+  {
+    "total": 210,
+    "rows": [
+    {
+      "nid": "048765d06f8e4d7883ccf5830c91fabb",
+      "personId": "1001",
+      "personName": "李旺",
+      "department": "辽宁省营口市南楼经济开发区保障局",
+      "password":"",
+      "personPhone": "13345678912"    
+    },
+    {
+      "nid": "0b482efd6fa943f0a6551148f3c71813",
+      "personId": "1002",
+      "personName": "任开松",
+      "department": "辽宁省营口市大石桥市保障局",
+      "password":"",
+      "personPhone": "13512345678"
+    },
+    {
+      "nid": "1ae33240d4b9493083ba3ca873d92bf3",
+      "personId": "1003",
+      "personName": "王继续",
+      "department": "辽宁省营口市大石桥市保障局",
+      "password":"",
+      "personPhone": "18513456142"
+    },
+    {
+      "nid": "1e5705ed679b4a76ae35c79aa4052e7f",
+      "personId": "1004",
+      "personName": "侯宝伟",
+      "department": "辽宁省营口市南楼经济开发区保障局",
+      "password":"",
+      "personPhone": "15948945623"
+    },
+    {
+      "nid": "20cc370ebee3429c99a979884e39a381",
+      "personId": "1005",
+      "personName": "冯玉杰",
+      "department": "辽宁省营口市大石桥市保障局",
+      "password":"",
+      "personPhone": "15057625685"
+    },
+    {
+      "nid": "28dc4f34e4144c86b4f802db1da5662e",
+      "personId": "1006",
+      "personName": "侯宝伟",
+      "department": "辽宁省营口市大石桥市保障局",
+      "password":"",
+      "personPhone": "18249624857"    
+    }]
+  }
+}
