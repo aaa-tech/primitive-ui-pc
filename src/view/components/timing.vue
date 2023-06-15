@@ -1,6 +1,6 @@
 <template>
 	<div style='width: 100%; height: 350px;overflow:auto'>
-		<div style='width: 980px; height:320px;' ref="TimingDiv">
+		<div style='width: 1200px; height:320px;' ref="TimingDiv">
 		</div>
 	</div>
 </template>
