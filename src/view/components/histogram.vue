@@ -9,7 +9,8 @@
 	export default {
 		name: 'histogram',
 		props: ['initValue'],
-		mounted() {},
+		mounted() {
+		},
 		data() {
 			var ggg = 'llllll'
 			return {

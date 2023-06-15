@@ -10,9 +10,10 @@ import axios from 'axios'
 // console.log( process.env.NODE_ENV)
 // 判断环境提供baseURL，注意要与后台地址一致
 const rootDG = (process.env.NODE_ENV === 'production') ? 'http://120.46.157.219:8080/hwt' : 'http://120.46.157.219:8080/hwt'
-//const root = (process.env.NODE_ENV === 'production') ? 'http://114.116.248.195:8080/hwt' : 'http://114.116.248.195:8080/hwt'
-const root = (process.env.NODE_ENV === 'production') ? 'http://localhost:8080/' : 'http://localhost:8080/'
+const root = (process.env.NODE_ENV === 'production') ? 'http://114.116.248.195:8080/hwt' : 'http://114.116.248.195:8080/hwt'
 //const root = (process.env.NODE_ENV === 'production') ? 'http://211.140.230.46:18080/hwt' : 'http://211.140.230.46:18080/hwt'
+//const root = (process.env.NODE_ENV === 'production') ? 'http://192.168.3.36:8080' : 'http://192.168.3.36:8080'
+//const root = (process.env.NODE_ENV === 'production') ? 'http://111.230.108.177:8080/hwt' : 'http://111.230.108.177:8080/hwt'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
 function apiAxios (method, url, params, token) {

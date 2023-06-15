@@ -47,6 +47,11 @@ export default {
       return res.data
     }) // 企业10分钟数据
   },
+  getCompanyTimeMinuteInfo (data, token) {//deviceCode:array,startTime:到秒,endTime:到秒
+    return http.get('system/sysMonitorPoint/getData?deviceCode=' + data.deviceCode+'&endDate=' + data.endTime + '&startDate='+ data.startTime, data, token).then(res=>{
+      return res.data
+    }) // 时序图
+  },
   getCompanyCurrentMinuteInfo (data, token) {//deviceCode:array,monitorPointCode:array
     return http.post('/data/realTimeData', data, token).then(res=>{
       return res.data
