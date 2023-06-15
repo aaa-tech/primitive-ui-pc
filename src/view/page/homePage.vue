@@ -123,32 +123,59 @@
 									</Card>
 								</TabPane>
 								<TabPane label="实时数据" style="overflow:visible;">
-									<Button type="primary" style="margin-bottom:10px;"
+									<div v-if="tabIndex === 1">
+										<Button type="primary" style="margin-bottom:10px;"
 										@click="changeEcharts(1)">折线图</Button>
-									<Button type="primary" style="margin-bottom:10px;margin-left:5px;"
+										<Button type="primary" style="margin-bottom:10px;margin-left:5px;"
 										@click="changeEcharts(2)">时序图</Button>
-									<!-- 实时折线图 -->
-									<Tabs type="card" :animated="false" width="100%" style="overflow:visible;"
-										v-show="echartsNumber == 1">
-										<TabPane :label=pmname :disabled="histogramHourEnegyDisabled"
-											style="overflow:visible;">
-											<div style="width:100%">
-												<histogram :init-value="lineHourEnegyData"></histogram>
-												<Spin size="large" fix v-if="histogramLoading"></Spin>
-											</div>
-										</TabPane>
-									</Tabs>
-									<!-- 实时时序图 -->
-									<Tabs type="card" :animated="false" width="100%" style="overflow:visible;"
-										v-show="echartsNumber == 2">
-										<TabPane :label=pmname :disabled="histogramHourEnegyDisabled"
-											style="overflow:visible;">
-											<div style="width:100%">
-												<timing :init-value="timeData"></timing>
-												<Spin size="large" fix v-if="histogramLoading"></Spin>
-											</div>
-										</TabPane>
-									</Tabs>
+										<!-- 折线图 -->
+										<Tabs type="card" :animated="false" width="100%" style="overflow:visible;" v-show="echartsNumber==1">
+											<TabPane :label=pmname :disabled="histogramHourEnegyDisabled" style="overflow:visible;">
+												<div style="width:100%">
+													<histogram :init-value="lineRealTimeData"></histogram>
+													<Spin size="large" fix v-if="histogramLoading"></Spin>
+												</div>
+											</TabPane>
+										</Tabs>
+										<!-- 时序图 -->
+										<Tabs type="card" :animated="false" width="100%" style="overflow:visible;" v-show="echartsNumber==2">
+											<TabPane :label=pmname :disabled="histogramHourEnegyDisabled" style="overflow:visible;">
+												<div style="width:100%">
+													<timing :init-value="lineRealTimeData"></timing>
+													<Spin size="large" fix v-if="histogramLoading"></Spin>
+												</div>
+											</TabPane>
+										</Tabs>
+								    </div>
+								</TabPane>
+								<TabPane label="分钟数据" style="overflow:visible;">
+									<div v-if="tabIndex === 2">
+										<Button type="primary" style="margin-bottom:10px;"
+											@click="changeEcharts(1)">折线图</Button>
+										<Button type="primary" style="margin-bottom:10px;margin-left:5px;"
+											@click="changeEcharts(2)">时序图</Button>
+										<Tabs type="card" :animated="false" width="100%" style="overflow:visible;"
+											v-show="echartsNumber == 1">
+											<TabPane :label=pmname :disabled="histogramHourEnegyDisabled"
+												style="overflow:visible;">
+												<div style="width:100%">
+													<histogram :init-value="lineHourEnegyData"></histogram>
+													<Spin size="large" fix v-if="histogramLoading"></Spin>
+												</div>
+											</TabPane>
+										</Tabs>
+										<!-- 分钟时序图 -->
+										<Tabs type="card" :animated="false" width="100%" style="overflow:visible;"
+											v-show="echartsNumber == 2">
+											<TabPane :label=pmname :disabled="histogramHourEnegyDisabled"
+												style="overflow:visible;">
+												<div style="width:100%">
+													<timing :init-value="timeData"></timing>
+													<Spin size="large" fix v-if="histogramLoading"></Spin>
+												</div>
+											</TabPane>
+										</Tabs>
+								    </div>
 								</TabPane>
 								<TabPane label="日查询">
 									<Form :label-width="80" style="height: 35px;">
@@ -174,30 +201,32 @@
 									</Form>
 									<table border="1" bordercolor="#d7d7d7" style="border-collapse:collapse" width="100%">
 									</table>
-                                    <Button type="primary" style="margin-bottom:10px;"
-										@click="changeEcharts(1)">折线图</Button>
-									<Button type="primary" style="margin-bottom:10px;margin-left:5px;"
-										@click="changeEcharts(2)">时序图</Button>
-									<!-- 日查询折线图 -->
-									<Tabs type="card" :animated="false" style="width: 100%;" v-show="echartsNumber == 1">
-										<TabPane :label=pmname :disabled="histogramDayEnegyDisabled">
-											<div style="width:100%">
-												<histogram :init-value="lineDayEnegyData"></histogram>
-												<Spin size="large" fix v-if="histogramLoading"></Spin>
-											</div>
-										</TabPane>
-									</Tabs>
-									<!-- 日查询时序图 -->
-									<Tabs type="card" :animated="false" width="100%" style="overflow:visible;"
-										v-show="echartsNumber == 2">
-										<TabPane :label=pmname :disabled="histogramHourEnegyDisabled"
-											style="overflow:visible;">
-											<div style="width:100%">
-												<timing :init-value="timeDayData"></timing>
-												<Spin size="large" fix v-if="histogramLoading"></Spin>
-											</div>
-										</TabPane>
-									</Tabs>
+									<div v-if="tabIndex === 3">
+										<Button type="primary" style="margin-bottom:10px;"
+											@click="changeEcharts(1)">折线图</Button>
+										<Button type="primary" style="margin-bottom:10px;margin-left:5px;"
+											@click="changeEcharts(2)">时序图</Button>
+										<!-- 日查询折线图 -->
+										<Tabs type="card" :animated="false" style="width: 100%;" v-show="echartsNumber == 1">
+											<TabPane :label=pmname :disabled="histogramDayEnegyDisabled">
+												<div style="width:100%">
+													<histogram :init-value="lineDayEnegyData"></histogram>
+													<Spin size="large" fix v-if="histogramLoading"></Spin>
+												</div>
+											</TabPane>
+										</Tabs>
+										<!-- 日查询时序图 -->
+										<Tabs type="card" :animated="false" width="100%" style="overflow:visible;"
+											v-show="echartsNumber == 2">
+											<TabPane :label=pmname :disabled="histogramHourEnegyDisabled"
+												style="overflow:visible;">
+												<div style="width:100%">
+													<timing :init-value="timeDayData"></timing>
+													<Spin size="large" fix v-if="histogramLoading"></Spin>
+												</div>
+											</TabPane>
+										</Tabs>
+								    </div>
 								</TabPane>
 								<TabPane label="月查询">
 									<Form :label-width="80" style="height: 50px;">
@@ -211,30 +240,32 @@
 											</Row>
 										</FormItem>
 									</Form>
-									<Button type="primary" style="margin-bottom:10px;"
-										@click="changeEcharts(1)">折线图</Button>
-									<Button type="primary" style="margin-bottom:10px;margin-left:5px;"
-										@click="changeEcharts(2)">时序图</Button>
-									<!-- 月查询折线图 -->
-									<Tabs type="card" :animated="false" v-show="echartsNumber == 1">
-										<TabPane :label=pmname :disabled="histogramMonthEnegyDisabled">
-											<div style="width:100%">
-												<histogram :init-value="lineMonthEnegyData"></histogram>
-												<Spin size="large" fix v-if="histogramLoading"></Spin>
-											</div>
-										</TabPane>
-									</Tabs>
-									<!-- 月查询时序图 -->
-									<Tabs type="card" :animated="false" width="100%" style="overflow:visible;"
-										v-show="echartsNumber == 2">
-										<TabPane :label=pmname :disabled="histogramHourEnegyDisabled"
-											style="overflow:visible;">
-											<div style="width:100%">
-												<timing :init-value="timeMonthData"></timing>
-												<Spin size="large" fix v-if="histogramLoading"></Spin>
-											</div>
-										</TabPane>
-									</Tabs>
+									<div v-if="tabIndex === 4">
+										<Button type="primary" style="margin-bottom:10px;"
+											@click="changeEcharts(1)">折线图</Button>
+										<Button type="primary" style="margin-bottom:10px;margin-left:5px;"
+											@click="changeEcharts(2)">时序图</Button>
+										<!-- 月查询折线图 -->
+										<Tabs type="card" :animated="false" v-show="echartsNumber == 1">
+											<TabPane :label=pmname :disabled="histogramMonthEnegyDisabled">
+												<div style="width:100%">
+													<histogram :init-value="lineMonthEnegyData"></histogram>
+													<Spin size="large" fix v-if="histogramLoading"></Spin>
+												</div>
+											</TabPane>
+										</Tabs>
+										<!-- 月查询时序图 -->
+										<Tabs type="card" :animated="false" width="100%" style="overflow:visible;"
+											v-show="echartsNumber == 2">
+											<TabPane :label=pmname :disabled="histogramHourEnegyDisabled"
+												style="overflow:visible;">
+												<div style="width:100%">
+													<timing :init-value="timeMonthData"></timing>
+													<Spin size="large" fix v-if="histogramLoading"></Spin>
+												</div>
+											</TabPane>
+										</Tabs>
+								    </div>
 								</TabPane>
 							</Tabs>
 						</el-tab-pane>
@@ -421,6 +452,8 @@ export default {
 			companyCodeForGraph: '',
 			companyDataForGraph: {},
 			echartsNumber: 1,
+			lineRealTimeData:{},
+			tabIndex:0
 		}
 	},
 	created() {
@@ -1918,6 +1951,8 @@ export default {
 			this.dateRangIndex = tabIndex
 			this.getMonitorData(tabIndex)
 		},
+
+		//原实时数据，实际是分钟数据
 		getCurrentReport(deviceCode, startDate, endDate, tabIndex) {
 			let data = {
 				deviceCode: deviceCode,
@@ -1946,6 +1981,33 @@ export default {
 				this.timeData=res;
 			})
 		},
+		//获取实时数据
+		getRealTimeData(deviceCode,startDate,endDate,tabIndex){
+			let data = {
+				deviceCode: deviceCode,
+				startTime: startDate,
+				endTime: endDate
+			}
+			viewApi.getCompanyRealHistoryInfo(data,this.token).then(res=>{
+				let dataInfo = res.data.rtdHistoryRespVOs
+				let basicInfo = res.data.rtdMonitorFactorRespVOS
+				dataInfo.map(item=>{
+					item.data = item.rtdMonitorFactorBeans
+					item.data.map(ite=>{
+						if(!ite.monitorPointId){
+							item.data.splice(ite,1)
+						}else{
+							ite.name = basicInfo.find(it=>{
+								return it.monitorPointId == ite.monitorPointId
+							}).factorName
+							ite.value = ite.factorValue
+						}
+					})
+				})
+				this.lineRealTimeData = this.initEnegyData(dataInfo, tabIndex, this.companyDetailData.companyName)
+			})
+		},
+
 		getDailyReport(deviceCode, startDate, endDate, tabIndex) {
 			let data = {
 				deviceCode: deviceCode,
@@ -1980,7 +2042,7 @@ export default {
 				startTime: startDate,
 				endTime: endDate
 			}
-			viewApi.getCompanyHourInfo(data, this.token).then(res => {
+			viewApi.getCompanyDayInfo(data, this.token).then(res => {
 				let dataInfo = res.data.rtdMinuteHourDayBeans
 				let basicInfo = res.data.rtdMonitorFactorRespVOS
 				dataInfo.map(item => {
@@ -2028,20 +2090,26 @@ export default {
 			return t2;
 		},
 		getMonitorData(tabIndex) {
+			this.tabIndex = tabIndex
 			if (tabIndex == 1) {
-				let startDate = util1.formatDate.format(new Date(new Date().getTime() - 60 * 60 * 1000), 'yyyy-MM-dd hh:mm:ss')
-				let endDate = util1.formatDate.format(new Date(new Date().getTime()), 'yyyy-MM-dd hh:mm:ss')
-				this.getCurrentReport(this.currentDeviceCode, startDate, endDate, tabIndex)
-			} else if (tabIndex == 2) {
-				let startDate = util1.formatDate.format(new Date(new Date().getTime() - 24 * 60 * 60 * 1000), 'yyyy-MM-dd hh:mm:ss')
-				let endDate = util1.formatDate.format(new Date(new Date().getTime()), 'yyyy-MM-dd hh:mm:ss')
-				this.getDailyReport(this.currentDeviceCode, startDate, endDate, tabIndex)
+				let startDate = util1.formatDate.format(new Date(new Date().getTime() - 60*60*1000),'yyyy-MM-dd hh:mm:ss')
+				let endDate = util1.formatDate.format(new Date(new Date().getTime()),'yyyy-MM-dd hh:mm:ss')
+				this.getRealTimeData(this.currentDeviceCode,startDate,endDate,tabIndex)
+			}
+			else if (tabIndex == 2) {
+				let startDate = util1.formatDate.format(new Date(new Date().getTime() - 60*60*1000),'yyyy-MM-dd hh:mm:ss')
+				let endDate = util1.formatDate.format(new Date(new Date().getTime()),'yyyy-MM-dd hh:mm:ss')
+				this.getCurrentReport(this.currentDeviceCode,startDate,endDate,tabIndex)
 			} else if (tabIndex == 3) {
+				let startDate = util1.formatDate.format(new Date(new Date().getTime() - 24*60*60*1000),'yyyy-MM-dd hh:mm:ss')
+				let endDate = util1.formatDate.format(new Date(new Date().getTime()),'yyyy-MM-dd hh:mm:ss')
+				this.getDailyReport(this.currentDeviceCode,startDate,endDate,tabIndex)
+			}else if(tabIndex == 4) {
 				let startDate = util1.formatDate.format(new Date(new Date().getTime()), 'yyyy-MM') + '-01'
 				let startTime = startDate + ' 00:00:00'
-				let endDate = util1.formatDate.format(new Date(new Date().getTime()), 'yyyy-MM-dd')
+				let endDate = util1.formatDate.format(new Date(new Date().getTime()),'yyyy-MM-dd')
 				let endTime = endDate + ' 23:59:59'
-				this.getMonthReport(this.currentDeviceCode, startTime, endTime, tabIndex)
+				this.getMonthReport(this.currentDeviceCode,startTime,endTime,tabIndex)
 			}
 		},
 		// 实时数据，日报表，月报表曲线图渲染
