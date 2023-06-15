@@ -141,7 +141,7 @@
 										<Tabs type="card" :animated="false" width="100%" style="overflow:visible;" v-show="echartsNumber==2">
 											<TabPane :label=pmname :disabled="histogramHourEnegyDisabled" style="overflow:visible;">
 												<div style="width:100%">
-													<timing :init-value="lineRealTimeData"></timing>
+													<timing :init-value="realTimeData"></timing>
 													<Spin size="large" fix v-if="histogramLoading"></Spin>
 												</div>
 											</TabPane>
@@ -453,7 +453,8 @@ export default {
 			companyDataForGraph: {},
 			echartsNumber: 1,
 			lineRealTimeData:{},
-			tabIndex:0
+			tabIndex:0,
+			realTimeData:{}
 		}
 	},
 	created() {
@@ -1979,6 +1980,7 @@ export default {
 				})
 				this.lineHourEnegyData = this.initEnegyData(dataInfo, tabIndex, this.companyDetailData.companyName)
 			})
+			data.dataType = 2
 			viewApi.getCompanyTimeMinuteInfo(data, this.token).then(res => {
 				this.timeData=res;
 			})
@@ -2008,6 +2010,10 @@ export default {
 				})
 				this.lineRealTimeData = this.initEnegyData(dataInfo, tabIndex, this.companyDetailData.companyName)
 			})
+			data.dataType = 1
+			viewApi.getCompanyTimeMinuteInfo(data, this.token).then(res => {
+				this.realTimeData=res;
+			})
 		},
 
 		getDailyReport(deviceCode, startDate, endDate, tabIndex) {
@@ -2034,6 +2040,7 @@ export default {
 				})
 				this.lineDayEnegyData = this.initEnegyData(dataInfo, tabIndex, this.companyDetailData.companyName)
 			})
+			data.dataType=3
 			viewApi.getCompanyTimeMinuteInfo(data, this.token).then(res => {
 				this.timeDayData=res;
 			})
@@ -2062,6 +2069,7 @@ export default {
 				})
 				this.lineMonthEnegyData = this.initEnegyData(dataInfo, tabIndex, this.companyDetailData.companyName)
 			})
+			data.dataType=4
 			viewApi.getCompanyTimeMinuteInfo(data, this.token).then(res => {
 				this.timeMonthData=res;
 			})
