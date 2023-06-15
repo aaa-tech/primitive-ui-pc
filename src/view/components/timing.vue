@@ -43,7 +43,7 @@ export default {
 				color: colors,
 				tooltip: {//提示框
 					formatter: function (params) {
-						return params.name + ':<br/>' + params.value[1] + '~' + params.value[2]/*  + '<br/>' + params.value[3] */;
+						return params.name + ':'+ params.value[3] + '<br/>' + params.value[1] + '~' + params.value[2]/*  + '<br/>' + params.value[3] */;
 					}//数据的值
 				},
 				legend: {//图例
