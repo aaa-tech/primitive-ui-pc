@@ -160,6 +160,8 @@
 					this.option.legend = this.initValue.legendData
 					this.option.xAxis = this.initValue.xAxisData
 					this.option.series = this.initValue.seriesData
+					//强制连接断线
+					this.option.series.forEach(item => item.connectNulls = true)
 					this.visiteVolume.setOption(this.option)
 					this.visiteVolume.hideLoading()
 				} else {
