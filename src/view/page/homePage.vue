@@ -1561,7 +1561,8 @@ export default {
 									let param = {} //准备push的 data.pcb[0].data[i]
 									param.deviceCode = obj.deviceCode
 									if (data.deviceInfo[i].deviceName.match(/[0-9]+[A-Z]+/g)) {
-										param.deviceName = obj.deviceName.replace(/[A-Z]+/g, '')
+										//param.deviceName = obj.deviceName.replace(/[A-Z]+/g, '')
+										param.deviceName = obj.deviceName
 									} else {
 										param.deviceName = obj.deviceName.replace(/[1-9]/g, '')
 									}
@@ -1574,7 +1575,8 @@ export default {
 									obj = data.deviceInfo[i]
 									let param = {} //准备push的 data.pcb[0].data[i]
 									param.deviceCode = obj.deviceCode
-									param.deviceName = obj.deviceName.replace(/[A-Z]+/g, '')
+									//param.deviceName = obj.deviceName.replace(/[A-Z]+/g, '')
+									param.deviceName = obj.deviceName
 									param.monitorPointList = obj.monitorPointList
 									param.netState = obj.netState
 									aa.push(param)
