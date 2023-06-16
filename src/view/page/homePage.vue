@@ -124,6 +124,29 @@
 								</TabPane>
 								<TabPane label="实时数据" style="overflow:visible;">
 									<div v-if="tabIndex === 1">
+										<Form :label-width="80" style="height: 35px;">
+										<Row>
+											<Col span="10">
+											<FormItem label="选择日期 : ">
+												<Row style="width:500px">
+													<Col span="24">
+													<FormItem prop="date">
+														<DatePicker v-model="startData" type="datetime" placeholder="请选择开始日期 "
+															style="width: 40%;display:inline-block;"
+															@on-change="getstartData"></DatePicker>~
+														<DatePicker v-model="endData" type="datetime" placeholder="请选择截止日期 "
+															style="width: 40%;display:inline-block;"
+															@on-change="getendData"></DatePicker>
+														<Button @click="onRealChange">点击搜索</Button>
+													</FormItem>
+													</Col>
+												</Row>
+											</FormItem>
+											</Col>
+										</Row>
+									</Form>
+									<table border="1" bordercolor="#d7d7d7" style="border-collapse:collapse" width="100%">
+									</table>
 										<Button type="primary" style="margin-bottom:10px;"
 										@click="changeEcharts(1)">折线图</Button>
 										<Button type="primary" style="margin-bottom:10px;margin-left:5px;"
@@ -185,10 +208,10 @@
 												<Row style="width:500px">
 													<Col span="24">
 													<FormItem prop="date">
-														<DatePicker type="datetime" placeholder="请选择开始日期 "
+														<DatePicker v-model="startData" type="datetime" placeholder="请选择开始日期 "
 															style="width: 40%;display:inline-block;"
 															@on-change="getstartData"></DatePicker>~
-														<DatePicker type="datetime" placeholder="请选择截止日期 "
+														<DatePicker v-model="endData" type="datetime" placeholder="请选择截止日期 "
 															style="width: 40%;display:inline-block;"
 															@on-change="getendData"></DatePicker>
 														<Button @click="onDayChange2">点击搜索</Button>
@@ -1381,6 +1404,10 @@ export default {
 		},
 		// 日报表区间搜索
 		onDayChange2() {
+			if(!this.endData || !this.startData){
+				this.$Message.warning('请选择查询日期')
+				return
+			}
 			this.histogramLoading = true
 			if (new Date(this.endData).getTime() - new Date(this.startData).getTime() > 7 * 24 * 60 * 60 * 1000) {
 				this.$Message.warning('日数据不能查询超过7天的数据')
@@ -1393,8 +1420,32 @@ export default {
 			}
 			this.getDailyReport(
 				this.currentDeviceCode,
-				this.startData,
-				this.endData,
+				util1.formatAmericaTime(this.startData),
+				util1.formatAmericaTime(this.endData),
+				this.dateRangIndex,
+			)
+		},
+
+		onRealChange(){
+			if(!this.endData || !this.startData){
+				this.$Message.warning('请选择查询日期')
+				return
+			}
+			this.histogramLoading = true
+			if (new Date(this.endData).getTime() - new Date(this.startData).getTime() >  3600 * 1000) {
+				this.$Message.warning('日数据不能查询超过1小时的数据')
+				this.histogramLoading = false
+				return
+			} else if (new Date(this.startData).getTime() > new Date(this.endData).getTime()) {
+				this.$Message.warning('初始日期不能大于结束日期')
+				this.histogramLoading = false
+				return
+			}
+			console.log(1234567,this.startData)
+			this.getRealTimeData(
+				this.currentDeviceCode,
+				util1.formatAmericaTime(this.startData),
+				util1.formatAmericaTime(this.endData),
 				this.dateRangIndex,
 			)
 		},
@@ -1430,6 +1481,9 @@ export default {
 			return obj
 		},
 		onYearMonthChange(value, tabIndex) {
+			if(value.length == 0){
+               return
+			}
 			this.histogramLoading = true
 			let paraDate0 = this.getYearMonthStr(value).paraDate0
 			let paraDate = this.getYearMonthStr(value).paraDate
@@ -2104,6 +2158,8 @@ export default {
 			if (tabIndex == 1) {
 				let startDate = util1.formatDate.format(new Date(new Date().getTime() - 60*60*1000),'yyyy-MM-dd hh:mm:ss')
 				let endDate = util1.formatDate.format(new Date(new Date().getTime()),'yyyy-MM-dd hh:mm:ss')
+				this.startData = startDate
+				this.endData = endDate
 				this.getRealTimeData(this.currentDeviceCode,startDate,endDate,tabIndex)
 			}
 			else if (tabIndex == 2) {
@@ -2113,6 +2169,8 @@ export default {
 			} else if (tabIndex == 3) {
 				let startDate = util1.formatDate.format(new Date(new Date().getTime() - 24*60*60*1000),'yyyy-MM-dd hh:mm:ss')
 				let endDate = util1.formatDate.format(new Date(new Date().getTime()),'yyyy-MM-dd hh:mm:ss')
+				this.startData = startDate
+				this.endData = endDate
 				this.getDailyReport(this.currentDeviceCode,startDate,endDate,tabIndex)
 			}else if(tabIndex == 4) {
 				let startDate = util1.formatDate.format(new Date(new Date().getTime()), 'yyyy-MM') + '-01'

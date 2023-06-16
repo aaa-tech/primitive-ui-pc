@@ -101,4 +101,17 @@ export default {
   removeStorage(key){
     localStorage.removeItem(key);
   },
+  formatAmericaTime(utcTime){
+    const beijingTime = new Date(utcTime).toLocaleString("zh-CN", {
+      timeZone: "Asia/Shanghai",
+      hour12: false,
+    });
+    const year = new Date(beijingTime).getFullYear();
+    const month = new Date(beijingTime).getMonth() + 1;
+    const date = new Date(beijingTime).getDate();
+    const hour = new Date(beijingTime).getHours();
+    const minute = new Date(beijingTime).getMinutes();
+    const second = new Date(beijingTime).getSeconds();
+    return `${year}-${month.toString().padStart(2, "0")}-${date.toString().padStart(2, "0")} ${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}:${second.toString().padStart(2, "0")}`
+  }
 }
