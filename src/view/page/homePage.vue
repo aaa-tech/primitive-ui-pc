@@ -424,7 +424,7 @@ export default {
 						let statusStr
 						let typeStr
 						let colArr = new Array()
-						if (params.row.factorValue > 0) {
+						if (params.row.factorValue > 1) {
 							typeStr = 'success'
 							statusStr = '开机'
 						} else {
