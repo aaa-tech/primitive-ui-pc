@@ -173,6 +173,31 @@
 								</TabPane>
 								<TabPane label="分钟数据" style="overflow:visible;">
 									<div v-if="tabIndex === 2">
+
+										<Form :label-width="80" style="height: 35px;">
+										<Row>
+											<Col span="10">
+											<FormItem label="选择日期 : ">
+												<Row style="width:500px">
+													<Col span="24">
+													<FormItem prop="date">
+														<DatePicker v-model="startData" type="datetime" placeholder="请选择开始日期 "
+															style="width: 40%;display:inline-block;"
+															@on-change="getstartData"></DatePicker>~
+														<DatePicker v-model="endData" type="datetime" placeholder="请选择截止日期 "
+															style="width: 40%;display:inline-block;"
+															@on-change="getendData"></DatePicker>
+														<Button @click="onRealChange">点击搜索</Button>
+													</FormItem>
+													</Col>
+												</Row>
+											</FormItem>
+											</Col>
+										</Row>
+									</Form>
+									<table border="1" bordercolor="#d7d7d7" style="border-collapse:collapse" width="100%">
+									</table>
+									
 										<Button type="primary" style="margin-bottom:10px;"
 											@click="changeEcharts(1)">折线图</Button>
 										<Button type="primary" style="margin-bottom:10px;margin-left:5px;"
