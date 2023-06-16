@@ -1,5 +1,5 @@
 const helper = {
-  // 根据name获取地址栏的参数值  
+  // 根据name获取地址栏的参数值
   getQueryString (name) {
     const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`)
     const hash = window.location.hash
