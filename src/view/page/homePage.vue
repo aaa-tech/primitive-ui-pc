@@ -2008,6 +2008,9 @@ export default {
 		getCompanyCurrentMinuteInfo(obj) {
 			viewApi.getCompanyCurrentMinuteInfo(obj, this.token).then(res => {
 				this.dataLineDeceive = res.data.rtdList
+				if(!this.companyStatus.includes('正常')){
+					this.dataLineDeceive.forEach(item => item.factorValue = 0)
+				}
 			})
 		},
 		clickLineDetailInfoTabs(tabIndex) {
