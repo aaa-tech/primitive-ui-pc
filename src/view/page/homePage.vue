@@ -2322,7 +2322,7 @@ export default {
 }
 
 table {
-	*border-collapse: collapse;
+	border-collapse:collapse;
 	/* IE7 and lower */
 	border-spacing: 0;
 	width: 100%;
